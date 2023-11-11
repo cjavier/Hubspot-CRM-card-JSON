@@ -1,0 +1,2 @@
+export CLIENT_ID=0b3ec528-7f2c-4372-83c3-81f3692ec15e;
+export CLIENT_SECRET=0e90f23d-fbf7-4677-8ae3-c198d76e95d0;
