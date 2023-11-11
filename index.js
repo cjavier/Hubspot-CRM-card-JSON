@@ -46,7 +46,8 @@ if (process.env.SCOPE) {
 SCOPES = SCOPES.join('%20');
 
 // On successful install, users will be redirected to /oauth-callback
-const REDIRECT_URI = `http://localhost:${PORT}/oauth-callback`;
+//const REDIRECT_URI = `http://localhost:${PORT}/oauth-callback`;
+const REDIRECT_URI = `https://hubspot-crm-cards.onrender.com/oauth-callback`;
 
 
 //===========================================================================//
