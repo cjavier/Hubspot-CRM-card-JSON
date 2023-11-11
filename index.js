@@ -308,3 +308,51 @@ app.post('/post-blog', async (req, res) => {
 
 app.listen(PORT, () => console.log(`=== Starting your app on http://localhost:${PORT} ===`));
 opn(`http://localhost:${PORT}`);
+
+//========================================//
+//   Managing the CRM CARD                //
+//========================================//
+app.get('/get-card', (req, res) => {
+  
+  console.log('Request Query:', req.query);
+  const associatedObjectId = req.query.associatedObjectId;
+  const associatedObjectType = req.query.associatedObjectType;
+
+  // Verifica si el tipo de objeto asociado es un contacto
+  if (associatedObjectType === 'CONTACT') {
+    // Aquí, realiza la lógica para obtener los detalles del contacto
+    // desde tu base de datos o sistema de CRM utilizando `associatedObjectId`.
+    // Por ejemplo, podrías hacer una llamada a la API de HubSpot para obtener los detalles del contacto.
+
+    // Simulamos una respuesta de la API con el nombre completo del contacto
+    const contactFullName = 'John Doe'; // Reemplazar con el nombre obtenido de la API
+
+    // Extrae el primer nombre del nombre completo
+    const firstName = contactFullName.split(' ')[0];
+
+    // Construye la respuesta para HubSpot
+    const response = {
+      results: [
+        {
+          objectId: associatedObjectId,
+          title: "API-54: Question about bulk APIs",
+          link: "http://example.com/2",
+          properties: [
+            {
+              label: 'First Name',
+              dataType: 'STRING',
+              value: firstName
+            }
+          ]
+        }
+      ]
+    };
+
+    // Envía la respuesta
+    res.json(response);
+  } else {
+    // Si el tipo de objeto no es un contacto, devuelve un mensaje de error
+    res.status(400).json({ error: 'Invalid object type' });
+  }
+
+});
